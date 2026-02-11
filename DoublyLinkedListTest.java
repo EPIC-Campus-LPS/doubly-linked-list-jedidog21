@@ -1,0 +1,38 @@
+//import static org.junit.jupiter.api.Assertions.*;
+//
+//class DoublyLinkedListTest {
+//    @org.junit.jupiter.api.Test
+//    void add() {
+//        DoublyLinkedList <Integer> doubly = new DoublyLinkedList<Integer>();
+//        doubly.add(10);
+//        assertEquals(10, doubly.remove());
+//    }
+//
+//    @org.junit.jupiter.api.Test
+//    void testAdd() {
+//    }
+//
+//    @org.junit.jupiter.api.Test
+//    void remove() {
+//    }
+//
+//    @org.junit.jupiter.api.Test
+//    void testRemove() {
+//    }
+//
+//    @org.junit.jupiter.api.Test
+//    void get() {
+//    }
+//
+//    @org.junit.jupiter.api.Test
+//    void set() {
+//    }
+//
+//    @org.junit.jupiter.api.Test
+//    void size() {
+//    }
+//
+//    @org.junit.jupiter.api.Test
+//    void isEmpty() {
+//    }
+//}
