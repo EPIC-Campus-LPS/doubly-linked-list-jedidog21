@@ -14,7 +14,7 @@ public class Node<E>{
         prevNode.setNextNode(this);
     }
     public void setChanged(boolean c){
-        changed = c;//true
+        changed = c;
     }
     public void setNextNode(Node<E> nextnode) {
         this.nextNode = nextnode;
