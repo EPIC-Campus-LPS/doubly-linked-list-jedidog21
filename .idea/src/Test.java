@@ -1,8 +1,8 @@
 public class Test{
     public static void main(String[] args) {
-        Node<String> first = new Node<String>("Hi");
-        Node<String> second = new Node<String>("Bye",first);
-        Node<String> third = new Node<String>("Hello");
+        Node<Integer> first = new Node<Integer>(3);
+        Node<Integer> second = new Node<Integer>(2,first);
+        Node<Integer> third = new Node<Integer>(1);
         second.setNextNode(third);
         System.out.println(second.getPrevNode().getValue());
         System.out.println(first.getNextNode().getValue());

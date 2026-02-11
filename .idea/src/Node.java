@@ -16,6 +16,9 @@ public class Node<E>{
     public void setChanged(boolean c){
         changed = c;
     }
+    public void setValue(E element){
+        this.element = element;
+    }
     public void setNextNode(Node<E> nextnode) {
         this.nextNode = nextnode;
         if (!changed) {
