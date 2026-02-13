@@ -1,12 +1,33 @@
 public class Test{
     public static void main(String[] args) {
-        Node<Integer> first = new Node<Integer>(3);
-        Node<Integer> second = new Node<Integer>(2,first);
-        Node<Integer> third = new Node<Integer>(1);
-        second.setNextNode(third);
-        System.out.println(second.getPrevNode().getValue());
-        System.out.println(first.getNextNode().getValue());
-        System.out.println(first.getNextNode().getNextNode().getValue());
-        System.out.println(third.getPrevNode().getValue());
+        Node<String> first = new Node<>("obtuse");
+
+        Node<String> next = new Node<>("rubber goose");
+        first.setNextNode(next);
+        next.setPrevNode(first);
+
+        Node<String> after = new Node<>("guava juice", next);
+        next.setNextNode(after);
+        System.out.println(after.getPrevNode().getValue()); // "rubber goose"
+
+        Node<String> last = new Node<>("giant snake");
+        System.out.println(next.equals(last)); //false
+
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        System.out.println(list.toString()); // [10, 20, 30]
+
+        list.add(2, 40);
+        System.out.println(list.toString());
+        list.add(0, 5);
+        list.set(2, 50);
+        System.out.println(list.toString()); // [5, 10, 50, 40, 30]
+
+        System.out.println(list.remove(4)); // 40
+        list.remove(2);
+        System.out.println(list.size()); // 3
+        System.out.println(list.toString()); // [5, 10, 40]
     }
 }

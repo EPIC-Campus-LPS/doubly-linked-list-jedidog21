@@ -1,5 +1,5 @@
 public class Node<E>{
-    E element;
+    E element = null;
     private Node<E> nextNode = null;
     private Node<E> prevNode = null;
     private boolean changed = false;
@@ -8,10 +8,9 @@ public class Node<E>{
         this.element = element;
     }
 
-    public Node(E element, Node<E> node) {
+    public Node(E element, Node<E> prev) {
         this.element = element;
-        prevNode = node;
-        prevNode.setNextNode(this);
+        prevNode = prev;
     }
     public void setChanged(boolean c){
         changed = c;
@@ -19,23 +18,13 @@ public class Node<E>{
     public void setValue(E element){
         this.element = element;
     }
-    public void setNextNode(Node<E> nextnode) {
-        this.nextNode = nextnode;
-        if (!changed) {
-            nextnode.setChanged(true);
-            nextnode.setPrevNode(this);
-        }
-        changed = false;
+
+    public void setNextNode(Node<E> next) {
+        nextNode = next;
     }
 
-    public void setPrevNode(Node<E> prevnode) {
-        this.prevNode = prevnode;
-        if (!changed) {
-            System.out.println("works 2?");
-            prevnode.setChanged(true);
-            prevnode.setNextNode(this);
-        }
-        changed = false;
+    public void setPrevNode(Node<E> prev) {
+        prevNode = prev;
     }
 
     public E getValue(){
@@ -57,7 +46,7 @@ public class Node<E>{
     }
 
     public String toString() {
-        return (String) element;
+        return this.getValue()+"";
     }
 
 
