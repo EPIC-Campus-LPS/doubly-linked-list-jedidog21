@@ -20,13 +20,14 @@ public class Test{
         System.out.println(list.toString()); // [10, 20, 30]
 
         list.add(2, 40);
-        System.out.println(list.toString());
+        System.out.println(list.toString()); // [10, 20, 40, 30]
         list.add(0, 5);
+        System.out.println(list.toString()); // [5, 10, 20, 40, 30]
         list.set(2, 50);
         System.out.println(list.toString()); // [5, 10, 50, 40, 30]
 
-        System.out.println(list.remove(4)); // 40
-        list.remove(2);
+        System.out.println(list.remove(4)); // 30
+        System.out.println(list.remove(2)); // 50
         System.out.println(list.size()); // 3
         System.out.println(list.toString()); // [5, 10, 40]
     }

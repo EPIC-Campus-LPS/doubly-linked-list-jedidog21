@@ -1,5 +1,3 @@
-import java.lang.annotation.ElementType;
-
 public class DoublyLinkedList<E> implements List{
     Node<E> header = null;
     public DoublyLinkedList(){
@@ -20,22 +18,32 @@ public class DoublyLinkedList<E> implements List{
         while (next.getNextNode() != null){
             next = next.getNextNode();
         }
-        next.setNextNode(new Node<E>((E) element));
+        next.setNextNode(new Node<E>((E) element, next));
     }
 
     @Override
     public void add(int i, Object element) throws IndexOutOfBoundsException {
+        Node<E> after = null;
         if (header == null){
             header = new Node<E>((E) element);
             return;
         }
         Node<E> next = header;
+        if (i == 0) {
+            after = new Node<E>((E) element);
+            next.setPrevNode(after);
+            after.setNextNode(next);
+            header = next.getPrevNode();
+            return;
+        }
         while(i != 0 && next.getNextNode() != null){
             next = next.getNextNode();
+            i--;
         }
-        Node<E> after = new Node<E>((E)element);
-        after.setNextNode(next.getNextNode());
-        next.setNextNode(after);
+        after = new Node<E>((E)element, next.getPrevNode());
+        after.getPrevNode().setNextNode(after);
+        after.setNextNode(next);
+        next.setPrevNode(after);
     }
 
     @Override
@@ -53,15 +61,31 @@ public class DoublyLinkedList<E> implements List{
     @Override
     public Object remove(int i) throws IndexOutOfBoundsException {
         Node<E> next = header;
-        while (i > 0 && next.getNextNode() != null){// Needs to throw indexoutofbounds
+        while (i > 1 && next.getNextNode() != null){ // Needs to throw indexoutofbounds
             next = next.getNextNode();
             i--;
         }
-        Object val = next.getValue();
-        if (next.getNextNode() != null)
-            next.getNextNode().setPrevNode(next.getPrevNode());
-        if (next.getPrevNode() != null)
-            next.getPrevNode().setNextNode(next.getNextNode());
+        Object val;
+        Node<E> rem = next.getNextNode();
+        if (rem == null) {
+            val = next.getValue();
+            next.getPrevNode().setNextNode(null);
+            return val;
+        }
+        if (next.getPrevNode() == null){
+            val = header.getValue();
+            header.setValue(null);
+            header = header.getNextNode();
+            return val;
+        }
+        val = rem.getValue();
+        if (rem.getNextNode() == null){
+            next.setNextNode(null);
+        }
+        else{
+            next.setNextNode(rem.getNextNode());
+            rem.getNextNode().setPrevNode(next);
+        }
         return val;
     }
 
@@ -79,6 +103,7 @@ public class DoublyLinkedList<E> implements List{
         Node<E> next = header;
         while (i > 0 && next.getNextNode() != null){
             next = next.getNextNode();
+            i--;
         }
         next.setValue((E)element);
     }
